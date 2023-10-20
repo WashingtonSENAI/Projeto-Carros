@@ -1,0 +1,255 @@
+
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, main, footer {
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #c71313;
+    color: rgb(250, 227, 25);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: rgb(250, 227, 25);
+    text-decoration: none;
+  }
+  
+  main {
+    background-color: #530f0f;
+  }
+  
+  #page-container {  /*footer*/
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* altura do rodapé */
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;   
+    background-color:#c71313;
+    text-align: center;
+
+  }
+  
+.name{
+
+flex: 1; /* Ocupa todo o espaço disponível na horizontal */
+margin-right: 20px;
+  color:rgb(250, 227, 25);
+}
+
+
+hr {
+  border: none;
+  border-top: 1px solid rgb(250, 227, 25); /* Adicione uma linha horizontal */
+  margin: 0 20px; /* Espaçamento entre o texto e a imagem */
+}
+
+.section {
+  flex: 1;
+  padding: 20px;
+ 
+  margin-right: 100px;
+  text-align: center;
+}
+
+
+/* Espaçamento entre as seções */
+.section + .section {
+  margin-top: 20px;
+}
+
+/* Espaçamento entre o texto e a imagem dentro de cada seção */
+.section-text {
+  margin-bottom: 20px;
+}
+
+.section-image {
+  margin-top: 20px;
+}
+.container1 {
+  color:rgb(250, 227, 25);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px;
+}
+
+
+
+.section:last-child {
+  margin-right: 0;
+}
+
+.container {
+  
+  display: flex;
+  align-items: center; 
+}
+  .inss{
+
+    flex: 1;
+   float: right;
+  
+   width:70%;
+   height: 70%;
+  }
+
+  /* Estilos específicos da página de contato */
+  #contato form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  #contato label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  #contato input,
+  #contato textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  #contato button {
+    background-color: #d62323;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  form {
+    width: 1000px;
+    height: 150px;
+    margin: 150px auto;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    background-color: rgb(250, 227, 25);
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    background-color: #d62323;
+    border-radius: 10px;
+    font-size: bold;
+  }
+
+  select, input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 150px auto; /* Ajustado para centralizar verticalmente e horizontalmente */
+    width: 1000px;
+  }
+  
+  .card {
+    width: calc(33.3333% - 15px);
+    margin: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  

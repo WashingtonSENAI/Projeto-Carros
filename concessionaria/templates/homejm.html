@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Site</title>
+  <link rel="stylesheet" href="{% static 'concessionaria/css/styles.css'%}">
+</head>
+<body>
+ 
+
+
+  <div id="page-container">
+    <div id="content-wrap">
+      <header>
+        <div class="header-content">
+       
+            <img src="{% static 'concessionaria/img/testejm.png' %}" width="100px" height="100px">
+        
+        
+        <nav>
+            
+          <ul>
+            <li><a href="/concessionaria/home">Home</a></li>
+            <li><a href="/concessionaria/veiculos">Veículos</a></li>
+            <li><a href="contato.html">Entrar em Contato</a></li>
+          </ul>
+        </nav>
+        </div>
+      </header>
+
+      <main>
+        <div class="container">
+          <div class="name">
+            <h1> MELHORES OFERTAS PARA VC</h1>
+            <h3>Explore nossa incrível seleção de carros novos e usados. Encontre o veículo dos seus sonhos!</h3>
+          </div>
+    
+          <div class="inss">     
+            
+          </div>
+       </div>
+    <hr>
+    <div class="container1">
+      <div class="section">
+        <p class="section-text">Somos uma concessionária de automóveis dedicada a fornecer veículos de alta qualidade e um serviço excepcional. Com anos de experiência, estamos aqui para atender todas as suas necessidades automotivas.</p>
+        <img src="{% static 'concessionaria/img/imagem1.jpg' %}" alt="Imagem 1" class="section-image">
+      </div>
+      <div class="section">
+        <img src="{% static 'concessionaria/img/imagem2.jpg' %}" alt="Imagem 2" class="section-image">
+        <p class="section-text">Além da venda de carros, oferecemos uma gama completa de serviços, incluindo manutenção, reparos e financiamento. Conte conosco para cuidar do seu carro.</p>
+      </div>
+    </div>
+    
+       
+      </main>
+    
+
+    </div>
+    <footer id="footer">
+        <p>&copy; 2023 Veículos Showroom</p>
+    </footer>
+  </div>
+</body>
+</html>

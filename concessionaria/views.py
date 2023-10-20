@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Pessoa
+from .models import Veiculo
 
 # Create your views here.
 def home(request):
-     return render(request, 'home.html')
+     return render(request, 'homejm.html')
+
+def veiculos(request):
+    veiculos = Veiculo.objects.all()
+    return render(request, 'veiculos.html', {'veiculos': veiculos})
 
 def sobrenos(request):
       return render(request, 'sobrenos.html')

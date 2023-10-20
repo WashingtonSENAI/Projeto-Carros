@@ -1,13 +1,103 @@
+{% load static %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'concessionaria/css/styles.css'%}">
+  <title>Veículos Showroom</title>
 </head>
+
 <body>
-    
-    <h1> VEICULOS BRABOS </h1>
+
+
+
+  <div id="page-container">
+    <div id="content-wrap">
+      <header>
+        <div class="header-content">
+
+          <img src="{% static 'concessionaria/img/testejm.png' %}" width="100px" height="100px">
+
+          <nav>
+
+            <ul>
+              <li><a href="/concessionaria/home">Home</a></li>
+              <li><a href="/concessionaria/veiculos">Veículos</a></li>
+              <li><a href="contato.html">Entrar em Contato</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </header>
+
+      <form>
+        <div class="form-group">
+          <label for="modelo">Marca:</label>
+          <select id="modelo" name="modelo">
+            <option value="sedan">Ford</option>
+            <option value="hatchback">Fiat</option>
+            <option value="suv">Chevrolet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="ano">Ano:</label>
+          <select id="ano" name="ano">
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="marca">Modelo:</label>
+          <select id="marca" name="marca">
+            <option value="toyota">Sedan</option>
+            <option value="honda">Hatchback</option>
+            <option value="ford">SUV</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tipo:</label>
+          <input type="checkbox" id="novo" name="tipo" value="novo"> Novo
+          <input type="checkbox" id="seminovo" name="tipo" value="seminovo"> Seminovo
+        </div>
+
+        <button type="submit">Pesquisar</button>
+      </form>
+
+      <div class="card-container">
+        {% for veiculo in veiculos %}
+          <div class="card">
+            <img src="{% static 'concessionaria/img/imagem1.jpg' %}" alt="Placeholder Image">
+            <div class="card-content">
+              <h5 class="card-title">Nome do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h5>
+              <p class="card-text">Tipo do Veículo: {{ veiculo.tipo}}</p>
+              <p class="card-text">Cor do Veículo: {{ veiculo.cor }}</p>
+              <p class="card-text">Estado do Veículo: {{ veiculo.estado }}</p>
+              <p class="card-text">Ano do Veículo: {{ veiculo.ano }}</p>
+              <p class="card-text">Preço do Veículo: {{ veiculo.preco }}</p>
+              <p class="card-text">Quilometragem Rodada: {{ veiculo.kmrodados }}</p>
+              <p class="card-text">Formas de Pagamento: {{ veiculo.forma_de_pagamento }}</p>
+              <a href="#" class="btn btn-primary">Botão</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <footer id="footer">
+        <p>&copy; 2023 Veículos Showroom</p>
+      </footer>
+    </div>
+</body>
+
 
 </body>
+
 </html>
