@@ -20,7 +20,7 @@ class Veiculo(models.Model):
     kmrodados =  models.DecimalField(max_digits=10, decimal_places=2, null= False)	
     forma_de_pagamento=  models.CharField(max_length=100, null= False)
     def __str__(self):
-        return f"{self.marca} - {self.modelo}"
+        return f"{self.marca} - {self.modelo} - {self.cor} - {self.estado} - {self.ano} - {self.kmrodados} "
 
 
 

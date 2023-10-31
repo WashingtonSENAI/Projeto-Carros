@@ -1,67 +1,395 @@
-{% load static %}
 
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <title>Meu Site</title>
-  <link rel="stylesheet" href="{% static 'concessionaria/css/styles.css'%}">
+
 </head>
-<body>
+
+<style>
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, main{
+    padding: 20px;
+  }
+  
+  header {
+    background-color: #c71313;
+    color: rgb(250, 227, 25);
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: rgb(250, 227, 25);
+    text-decoration: none;
+  }
+  
+  main {
+    background-color: #530f0f;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  
+  
+  #page-container {  /*footer*/
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  #content-wrap {
+    padding-bottom: 2.5rem;    /* altura do rodapé */
+  }
+  
+  #footer {
+    position: absolute!important;
+    bottom: 0!important;
+    width: 100%!important;
+    height: 2.5rem!important; 
+    background-color:#c71313!important;
+    text-align: center!important;  
+    padding: 50px!important;
+
+  }
+  
+.name{
+
+flex: 1; /* Ocupa todo o espaço disponível na horizontal */
+margin-right: 20px;
+  color:rgb(250, 227, 25);
+}
+
+
+hr {
+  border: none;
+  border-top: 1px solid rgb(250, 227, 25); /* Adicione uma linha horizontal */
+  margin: 0 20px; /* Espaçamento entre o texto e a imagem */
+}
+
+.section {
+  flex: 1;
+  padding: 20px;
  
+  margin-right: 100px;
+  text-align: center;
+}
+
+
+/* Espaçamento entre as seções */
+.section + .section {
+  margin-top: 20px;
+}
+
+/* Espaçamento entre o texto e a imagem dentro de cada seção */
+.section-text {
+  margin-bottom: 20px;
+}
+
+.section-image {
+  margin-top: 20px;
+}
+.container1 {color:rgb(250, 227, 25);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px;
+}
+
+
+
+.section:last-child {
+  margin-right: 0;
+}
+
+.container {
+  padding: 10PX;
+  display: flex;
+  align-items: center; 
+}
+  .inss{
+
+  position: relative;
+  display: flex;
+  right: 0%;
+  
+   width:85%;
+   height: 70%;
+  }
+
+  .card{
+  
+    background-color:   rgb(250, 197, 25)!important;
+  }
+
+  /* Estilos específicos da página de contato */
+  #contato form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  #contato label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  #contato input,
+  #contato textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  
+  #contato button {
+    background-color: #d62323;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+.pesquisar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+.carousel {
+  width: 300px;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #333;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+
+.card-car {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 30px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+
+
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Ajuste a altura conforme necessário */
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 200px!important;
+}
+
+.card-title {
+
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+
+
+</style>
+
+<body>
+  <header>
+    <div class="header-content">
+   
+      <img src="{% static 'concessionaria/img/logo1.jpg' %}" width="200px" height="100px">
+  
+  
+  <nav>
+      
+    <ul>
+      <li><a href="/concessionaria/home">Home</a></li>
+      <li><a href="/concessionaria/veiculos">Veículos</a></li>
+      <li><a href="contato.html">Entrar em Contato</a></li>
+    </ul>
+  </nav>
+  </div>
+  </header>
 
 
   <div id="page-container">
     <div id="content-wrap">
-      <header>
-        <div class="header-content">
-       
-            <img src="{% static 'concessionaria/img/testejm.png' %}" width="100px" height="100px">
-        
-        
-        <nav>
-            
-          <ul>
-            <li><a href="/concessionaria/home">Home</a></li>
-            <li><a href="/concessionaria/veiculos">Veículos</a></li>
-            <li><a href="contato.html">Entrar em Contato</a></li>
-          </ul>
-        </nav>
-        </div>
-      </header>
-
+      <!-- o resto do conteúdo da página -->
       <main>
         <div class="container">
           <div class="name">
+            
             <h1> MELHORES OFERTAS PARA VC</h1>
             <h3>Explore nossa incrível seleção de carros novos e usados. Encontre o veículo dos seus sonhos!</h3>
           </div>
-    
-          <div class="inss">     
-            
+
+          <div class="inss">
+            <img src="{% static 'concessionaria/img/carro-P.png' %}"class="rounded float-end" alt="...">
+
           </div>
-       </div>
-    <hr>
-    <div class="container1">
-      <div class="section">
-        <p class="section-text">Somos uma concessionária de automóveis dedicada a fornecer veículos de alta qualidade e um serviço excepcional. Com anos de experiência, estamos aqui para atender todas as suas necessidades automotivas.</p>
-        <img src="{% static 'concessionaria/img/imagem1.jpg' %}" alt="Imagem 1" class="section-image">
-      </div>
-      <div class="section">
-        <img src="{% static 'concessionaria/img/imagem2.jpg' %}" alt="Imagem 2" class="section-image">
-        <p class="section-text">Além da venda de carros, oferecemos uma gama completa de serviços, incluindo manutenção, reparos e financiamento. Conte conosco para cuidar do seu carro.</p>
-      </div>
-    </div>
-    
-       
-      </main>
-    
+        </div>
+        <hr>
+ 
+
+        <div class="card text-center" style="margin-bottom: 30%;">
+
+          <div class="card-body">
+            <h1 class="card-title">Quem somos?
+            </h1>
+            <p class="card-text" style="color: black;">
+              A GM VEÍCULOS BUSCA ENTREGAR PRODUTOS DE QUALIDADES PARA OS CLIENTES COM TAXAS REDUZIDOS PARA TODAS AS PESSOAS, SEM BUROCRACIAS 
+              
+               Com anos 5 ANOS DE MERCADO de experiência, estamos aqui para atender
+              todas as suas necessidades automotivas.</p>
+            <P>Além da venda de carros, oferecemos uma gama completa de serviços, incluindo manutenção, reparos e
+              financiamento. Conte conosco para cuidar do seu carro.</P>
+          </div>
+
+        </div>
+
+        <div></div>
+
+        <div class="card text-center" style="margin-bottom: 30%;">
+
+          <div class="card-body">
+            <img src="{% static 'concessionaria/img/icons.png' %}" class="" alt="...">
+          </div>
+
+        </div>
+
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
 
     </div>
+    </main>
+
     <footer id="footer">
-        <p>&copy; 2023 Veículos Showroom</p>
+      <p style="color: rgb(250, 227, 25);">&copy; 2023 Gm Veículos </p>
     </footer>
   </div>
+
+  </div>
 </body>
+
 </html>

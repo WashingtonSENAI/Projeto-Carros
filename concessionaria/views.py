@@ -2,14 +2,38 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Pessoa
 from .models import Veiculo
-
+from django.core.paginator import Paginator
 # Create your views here.
+
+
+
+def index(request):
+    return HttpResponse("Olá mundo!")
+
 def home(request):
-     return render(request, 'homejm.html')
+     veiculos = Veiculo.objects.all()
+     return render(request, 'homejm.html' ,  {'veiculos': veiculos})
 
 def veiculos(request):
-    veiculos = Veiculo.objects.all()
-    return render(request, 'veiculos.html', {'veiculos': veiculos})
+
+  veiculos = Veiculo.objects.all()
+
+  marcas = Veiculo.objects.values_list('marca', flat=True).distinct()
+
+  context = {
+    'veiculos': veiculos,
+    'marcas': marcas
+  }
+
+  paginator = Paginator(veiculos, 2)
+
+  page = request.GET.get('page')
+
+  veiculos_paginados = paginator.get_page(page)
+
+  context['veiculos'] = veiculos_paginados
+
+  return render(request, 'veiculos.html', context)
 
 def sobrenos(request):
       return render(request, 'sobrenos.html')
@@ -33,25 +57,4 @@ def teste(request):
             pessoas = Pessoa.objects.filter(nome=nome)
             
             return HttpResponse(pessoas)
-
-
-
-# def listar_veiculos(request):
-#     veiculos = Veiculo.objects.all()
-#     return render(request, 'veiculos.html', {'veiculos': veiculos})
-
-# def adicionar_veiculo(request):
-#     if request.method == 'POST':
-#         marca = request.POST['marca']
-#         modelo = request.POST['modelo']
-#         ano = request.POST['ano']
-#         preco = request.POST['preco']
-#         Veiculo.objects.create(marca=marca, modelo=modelo, ano=ano, preco=preco)
-#         return redirect('listar_veiculos')
-#     return render(request, 'adicionar_veiculo.html')
-
-# def excluir_veiculo(request, veiculo_id):
-#     veiculo = Veiculo.objects.get(pk=veiculo_id)
-#     veiculo.delete()
-#     return redirect('listar_veiculos')
 
