@@ -1,0 +1,797 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header,
+  main {
+    padding: 20px;
+  }
+
+  header {
+    background-color: #c71313;
+    color: rgb(250, 227, 25);
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  nav ul li a {
+    color: rgb(250, 227, 25);
+    text-decoration: none;
+  }
+
+  main {
+    background-color: #530f0f;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+
+
+  #page-container {
+    /*footer*/
+    position: relative;
+    min-height: 100vh;
+  }
+
+  #content-wrap {
+    padding-bottom: 2.5rem;
+    /* altura do rodapÃŠ */
+  }
+
+  #footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 2.5rem !important;
+    background-color: #c71313 !important;
+    text-align: center !important;
+    padding: 50px !important;
+
+  }
+
+  .name {
+
+    flex: 1;
+    /* Ocupa todo o espaÃ§o disponÃ­vel na horizontal */
+    margin-right: 20px;
+    color: rgb(250, 227, 25);
+  }
+
+
+  hr {
+    border: none;
+    border-top: 1px solid rgb(250, 227, 25);
+    /* Adicione uma linha horizontal */
+    margin: 0px 30px;
+    /* EspaÃ§amento entre o texto e a imagem */
+  }
+
+  .section {
+    flex: 1;
+    padding: 20px;
+
+    margin-right: 100px;
+    text-align: center;
+  }
+
+
+  /* EspaÃ§amento entre as seÃ§Ãĩes */
+  .section+.section {
+    margin-top: 20px;
+  }
+
+  /* EspaÃ§amento entre o texto e a imagem dentro de cada seÃ§ÃŖo */
+  .section-text {
+    margin-bottom: 20px;
+  }
+
+  .section-image {
+    margin-top: 20px;
+  }
+
+  .container1 {
+    color: rgb(250, 227, 25);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 60px;
+  }
+
+
+
+  .section:last-child {
+    margin-right: 0;
+  }
+
+  .container {
+    padding: 10PX;
+    display: flex;
+    align-items: center;
+  }
+
+  .inss {
+
+    position: relative;
+    display: flex;
+    right: 0%;
+
+    width: 85%;
+    height: 70%;
+  }
+
+  .card {
+
+    background-color: rgb(250, 197, 25) !important;
+  }
+
+  /* Estilos especÃ­ficos da pÃĄgina de contato */
+  #contato form {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  #contato label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #contato input,
+  #contato textarea {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  #contato button {
+    background-color: #d62323;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .pesquisar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+
+  .carousel {
+    width: 300px;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .carousel-item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .carousel-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+
+  .card-car {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 30px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+
+  .card-img-top {
+    width: 100%;
+    height: 200px;
+    /* Ajuste a altura conforme necessÃĄrio */
+    object-fit: cover;
+  }
+
+  .card {
+    text-align: center;
+    margin-bottom: 30%;
+  }
+
+  .card-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    color: #530f0f
+  }
+
+  .card-text-container {
+    line-height: 1.5;
+    color: #530f0f;
+    padding: 20px;
+    /* Ajusta o espaÃ§amento interno para reduzir o espaÃ§amento do conteÃēdo */
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 150px;
+    margin-top: 20px;
+  }
+
+
+  .btn-primary {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none!important;
+    border-radius: 4px!important;
+    background-color: #eead2d!important;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 180px;
+    height: 35px;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  
+
+
+
+  form {
+    background-color: rgb(250, 197, 25);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  .icon-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .icon {
+    margin: 10px;
+    text-align: center;
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+  }
+
+  .icon img {
+    width: 130px;
+    /* ajuste conforme necessÃĄrio */
+    height: 130px;
+    /* ajuste conforme necessÃĄrio */
+  }
+
+  .icon p {
+    margin-top: 15px;
+    font-size: larger;
+    color: #530f0f;
+  }
+
+  .icon-title {
+    font-weight: bold;
+    /* Define a fonte em negrito */
+    color: #530f0f;
+    /* Define a cor vermelha */
+    margin-top: 25px;
+  }
+
+  .services {
+    background-color: #530f0f;
+    margin-top: 100px;
+    color: rgb(250, 197, 25)
+  }
+
+  /* Estilizando os itens da seÃ§ÃŖo de serviÃ§os */
+  .services .item {
+    background-color: rgb(250, 197, 25);
+    border: 1px solid rgb(250, 197, 25);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+    color: #530f0f;
+  }
+
+  .btn-btn-primary:hover{
+
+    background-color: black;
+
+  }
+
+  .services .item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estilizando os botÃĩes */
+  .services .btn-primary {
+    background-color: #530f0f;
+    color: #fff;
+  }
+
+  .services .btn-primary:hover {
+    background-color: #3d0505;
+  }
+
+  /* Estilizando a seÃ§ÃŖo de contato e informaÃ§Ãĩes */
+  .contact-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    background-color: rgb(250, 197, 25);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 5000px;
+    margin: 50px auto;
+  }
+
+  /* Estilizando o formulÃĄrio de contato */
+  .contact-form,
+  .contact-info {
+    width: 45%;
+  }
+
+  .contact-form h2,
+  .contact-info h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 18px;
+  }
+
+  /* Estilizando os contatos de aÃ§ÃŖo rÃĄpida */
+  .contatos a {
+    background-color: rgb(250, 197, 25);
+    border: 1px solid #530f0f;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    display: block;
+    text-decoration: none;
+    color: rgb(250, 197, 25);
+  }
+
+  .contatos a:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-control {
+    background-color: #eead2d;
+    border: 1px solid rgb(250, 227, 25);
+    color: rgb(250, 227, 25);
+  }
+
+  .contatos .col-4 img {
+    width: 20px;
+    /* Ajuste o tamanho conforme necessÃĄrio */
+  }
+
+  .row.contatos {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .row.contatos .col-4 {
+    width: 30%;
+    /* Ajuste a largura conforme necessÃĄrio */
+  }
+
+  .border.text-center.text-black-50.py-3.rounded.d-block {
+    width: 100%;
+  }
+
+
+  .card_1-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 150px auto;
+    /* Ajustado para centralizar verticalmente e horizontalmente */
+    width: 1000px;
+  }
+
+  .card_1 {
+    width: calc(33.3333% - 15px);
+    margin: 10px 5px;
+    border: 1px solid rgba(199, 19, 19);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(199, 19, 19, 0.9);
+    background-color: #8b0000;
+    text-align: center;
+  }
+
+  .card_1 img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+  .card_1-content {
+    padding: 15px;
+  }
+
+  .card_1-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 10px 20px 10px 20px;
+    color: #fff;
+  }
+
+  .card_1-text {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 15px;
+
+  }
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <title>Meu Site</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="{% static 'concessionaria/img/logo1.jpg' %}" width="200px" height="100px">
+      <nav>
+        <ul>
+          <li><a href="/concessionaria/home">Home</a></li>
+          <li><a href="/concessionaria/veiculos">Veículos</a></li>
+          <li><a class="p-1 rounded" href="#simple-list-item-1">Entrar em Contato</a></li>
+          <link rel="stylesheet" href="{% static 'concessionaria/css/styles.css'%}">
+          
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <script>
+  $(document).ready(function() {
+
+    var contatoSection = $("#contato-section")[0];
+    // Função para verificar se um elemento está visível na tela
+    function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+ 
+
+    // Verificar se há mensagens de erro ou sucesso na página
+    if ($(".errorlist").length > 0 || $(".sucesslist").length > 0) {
+        // Se houver mensagens, rolar a página para a seção "Entrar em Contato" se não estiver visível
+        var contatoSection = $("#contato-section")[0];  // Obter o elemento DOM
+        if (contatoSection && !isElementInViewport(contatoSection)) {
+            $("html, body").animate({
+                scrollTop: $(contatoSection).offset().top
+            }, 1000);  // 1000 é a duração da animação em milissegundos, você pode ajustar conforme necessário
+        }
+    }
+});
+
+
+    </script>
+    
+  <div id="page-container">
+    <div id="content-wrap">
+      <main>
+        <div class="container">
+          <div class="name">
+            <h1>Conquiste o seu automóvel hoje!</h1>
+            <h3>Explore nossa incrível seleção de carros novos e usados. Encontre o veículo dos seus sonhos!</h3>
+          </div>
+
+          <div class="inss">
+            <img src="{% static 'concessionaria/img/carro-P.png' %}" class="rounded float-end" alt="...">
+          </div>
+        </div>
+        <hr>
+
+        <div class="card text-center" style="margin-bottom: 10%;">
+          <h1 class="card-title">Quem somos?</h1>
+          <div class="card-text-container">
+            <p class="card-text" style="color: #530f0f;">
+              Somos a GM Veículos que proporciona confiança, transparência, credibilidade e atendimento de
+              excelência.
+              <br> Estes são os conceitos que traduzem a história da GM Veículos, atuando no mercado de
+              automóveis na cidade de Feira de Santana - Bahia.</br>
+            </p>
+            <p>
+              Equipe altamente qualificada que dispõe de um atendimento personalizado e diferenciado,
+              visando sempre à satisfação de nossos clientes.
+              <br>Aqui na GM, além de encontrar a qualidade que procura, oferecemos as melhores taxas do
+              mercado com condições imperdíveis.</br>
+            </p>
+            <p>
+              Fique à vontade e confira nossas ofertas!
+            </p>
+          </div>
+        </div>
+
+        <div class="card_1-container">
+
+          {% for veiculo in veiculos %}
+          <div class="card_1">
+
+            <img src="{{ veiculo.imagem.url }}" alt="Veículo">
+            <div class="card_1-content">
+              <h5 class="card_1-title">Nome do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h5>
+              <p class="card_1-text">Tipo do Veículo: {{ veiculo.tipo}}</p>
+              <p class="card_1-text">Cor do Veículo: {{ veiculo.cor }}</p>
+              <p class="card_1-text">Estado do Veículo: {{ veiculo.estado }}</p>
+              <p class="card_1-text">Ano do Veículo: {{ veiculo.ano }}</p>
+              <p class="card_1-text">Quilometragem Rodada: {{ veiculo.kmrodados }} KMS</p>
+              <p class="card_1-text">Formas de Pagamento: {{ veiculo.forma_de_pagamento }}</p>
+              <a href="#simple-list-item-1" class="btn btn-primary"> R$ {{ veiculo.preco }} </a>
+            </div>
+          </div>
+
+
+
+
+
+          {% endfor %}
+
+        </div>
+
+
+        <div class="card text-center" style="margin-bottom: 0;">
+          <div class="icon-container">
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/atendimento.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Atendimento Personalizado</h5>
+              <p>Profissionais treinados para fornecer informações detalhadas.</p>
+            </div>
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/veiculous.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Valorização de veículos usados</h5>
+              <p>Possibilidade de receber uma oferta justa ao negociar um veículo usado na troca.</p>
+            </div>
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/facpag.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Facilidade no pagamento</h5>
+              <p>Financiamento por todos os bancos, cartão de crédito ou débito, espécie, pix, boleto
+                bancário, carta de crédito.</p>
+            </div>
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/confcred.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Confiabilidade e credibilidade</h5>
+              <p>5 anos no mercado, cobertura de garantia de 3 meses, experiente no ramo de veículos
+                nacionais.</p>
+            </div>
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/facdoc.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Facilidade na documentação</h5>
+              <p>Assistência na parte burocrática e documentação da compra.</p>
+            </div>
+            <div class="icon">
+              <img src="{% static 'concessionaria/img/modvar.png' %}" alt="Heart Icon">
+              <h5 class="icon-title">Acesso a modelos e variedades</h5>
+              <p>Amplas opções de escolha em termos de modelos e configurações.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;" id="contato-section">
+          <div style=" padding-bottom: 5%;
+                margin-bottom: 20%;
+              padding-left: 10%;
+              margin-left: 22%;
+
+              padding-right: 10%;
+              margin-top: 20%;
+              padding-top: 5%; background-color:rgb(250, 227, 25);border-radius:0.7%;">
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="post">
+              {% csrf_token %}
+              <div class="col-8">
+                <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0"
+                  data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                  <h4 style="color: #c71313;" id="simple-list-item-1">Entre em contato</h4>
+
+
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" style="color: #c71313;">Email </label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp">
+
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #c71313;">Telefone</label>
+                <input type="=" class="form-control" id="exampleInputPassword1" name="telefone">
+
+                <button type="submit" class="btn btn-outline-danger"
+                  style="margin-bottom: 2%; margin-top: 2%;">Enviar</button>
+                <div style="float:right; margin-top: 2%;margin-left:1%;">
+
+
+            </form>
+            <div>
+              <a href="https://wa.me/5575991239045" target="_blank">
+
+
+
+                <button type="button" class="btn btn-outline-dager">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                    <path
+                      d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z">
+                    </path>
+                  </svg>
+                </button>
+              </a>
+            </div>
+
+
+
+            <div style="float:right; margin-top: 2%;">
+
+              <a href="https://instagram.com" target="_blank">
+                <button type="button" class="btn btn-outline-danger">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-instagram" viewBox="0 0 16 16">
+
+                    <path
+                      d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z">
+                    </path>
+                  </svg>
+
+                </button>
+              </a>
+            </div>
+          </div>
+
+
+        </div>
+
+    </div>
+
+  </div>
+  </main>
+
+  <footer id="footer">
+    <p style="color: rgb(250, 227, 25);">&copy; 2023 Gm Veículos </p>
+  </footer>
+  </div>
+  </div>
+
+</body>
+
+
+</html>

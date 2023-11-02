@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'concessionaria/css/styles2.css'%}">
+  <title>Veículos Showroom</title>
+</head>
+
+<body>
+
+  <style>
+ .pagination {
+    display: block;
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 6.3rem;   
+    background-color:#c71313;
+    text-align: bottom;
+    color:#eead2d;
+
+  }
+  
+  
+  
+  .pagination a {
+    color: rgb(255, 238, 0);
+    float: none;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+
+.btn-primary {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    background-color: #eead2d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 180px;
+    height: 35px;
+  }
+
+  #page-container {  /*footer*/
+    position: relative;
+    min-height: 30vh;
+  }
+
+  
+  
+  </style>
+  <header>
+    <div class="header-content">
+
+      <img src="{% static 'concessionaria/img/logo1.jpg' %}" width="200px" height="100px">
+
+
+      <nav>
+
+        <ul>
+          <li><a href="/concessionaria/home">Home</a></li>
+          <li><a href="/concessionaria/veiculos">Veículos</a></li>
+          <li><a href="/concessionaria/home#simple-list-item-1">Entrar em Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <script>
+    function updateURL(page) {
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('page', page);
+      const newURL = window.location.pathname + '?' + urlParams.toString();
+      window.history.pushState(null, null, newURL);
+    }
+  </script>
+
+  <form>
+    <select name="marca">
+      <option value="">Marcas:</option>
+      {% for marca in marcas %}
+      <option value="{{ marca }}">{{ marca }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="ano">
+      <option value="">Anos:</option>
+      {% for ano in ano %}
+      <option value="{{ ano }}">{{ ano }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="modelo">
+      <option value="">Modelos:</option>
+      {% for modelo in modelo %}
+      <option value="{{ modelo }}">{{ modelo }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="tipo">
+      <option value="">Tipos:</option>
+      {% for tipo in tipo %}
+      <option value="{{ tipo }}">{{ tipo }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="estado">
+      <option value="">Estados:</option>
+      {% for estado in estado %}
+      <option value="{{ estado }}">{{ estado }}</option>
+      {% endfor %}
+    </select>
+
+    <button type="submit">Pesquisar</button>
+
+    <button type="submit" name="limpar">Limpar</button>
+  </form>
+
+  <div class="card-container">
+
+
+    {% for veiculo in veiculos %}
+
+
+
+
+
+    <div class="card">
+      
+      <img src="{{ veiculo.imagem.url }}" alt="Veículo">
+      <div class="card-content">
+        <h5 class="card-title">Nome do Veículo: {{ veiculo.marca }} {{ veiculo.modelo }}</h5>
+        <p class="card-text">Tipo do Veículo: {{ veiculo.tipo}}</p>
+        <p class="card-text">Cor do Veículo: {{ veiculo.cor }}</p>
+        <p class="card-text">Estado do Veículo: {{ veiculo.estado }}</p>
+        <p class="card-text">Ano do Veículo: {{ veiculo.ano }}</p>
+        <p class="card-text">Quilometragem Rodada: {{ veiculo.kmrodados }} KMS</p>
+        <p class="card-text">Formas de Pagamento: {{ veiculo.forma_de_pagamento }}</p>
+        <a href="/concessionaria/home#simple-list-item-1" class="btn btn-primary"> R$ {{ veiculo.preco }} </a>
+      </div>
+    </div>
+
+
+
+
+
+    {% endfor %}
+
+  </div>
+
+  <div class="pagination" style="text-align: center;">
+    {% if veiculos.has_previous %}
+    <a class="page-link" href="" onclick="updateURL({{ veiculos.previous_page_number }})">&laquo;</a>
+    {% endif %}
+    {% for num in veiculos.paginator.page_range %}
+    {% if veiculos.number == num %}
+    <a class="page-link active" href="">{{ num }}</a>
+    {% else %}
+    <a class="page-link" href="" onclick="updateURL({{ num }})">{{ num }}</a>
+    {% endif %}
+    {% endfor %}
+
+    {% if veiculos.has_next %}
+    <a class="page-link" href="" onclick="updateURL({{ veiculos.next_page_number }})">&raquo;</a>
+    {% endif %}
+  </div>
+
+  <div id="page-container">
+    <div id="content-wrap">
+      <!-- o resto do conteúdo da página -->
+    </div>
+    <footer id="footer" >
+      <p style="margin-top: 3%;">&copy; 2023 Veículos Showroom</p>
+    </footer>
+  </div>
+</body>
+
+
+</body>
+
+</html>
